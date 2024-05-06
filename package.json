@@ -1,0 +1,18 @@
+{
+  "name": "polkadot-api-test",
+  "module": "index.ts",
+  "type": "module",
+  "scripts": {
+    "preinstall": "papi"
+  },
+  "devDependencies": {
+    "@types/bun": "latest"
+  },
+  "peerDependencies": {
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "@polkadot-api/descriptors": "^0.0.1",
+    "polkadot-api": "^0.6.0"
+  }
+}
