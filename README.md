@@ -1,4 +1,4 @@
-# polkadot-api-test
+# papi-tester
 
 To install dependencies:
 
@@ -13,4 +13,3 @@ bun run index.ts
 ```
 
 This project was created using `bun init` in bun v1.1.7. [Bun](https://bun.sh) is a fast all-in-one JavaScript runtime.
-# papi-tester
