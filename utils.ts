@@ -9,7 +9,7 @@ const mapRawIdentity = (
 ) => {
   if (!rawIdentity) return rawIdentity;
   const {
-    info: { additional, display, email, legal, riot, twitter, web },
+    info: { additional, display, email, legal, riot, twitter, web, github },
   } = rawIdentity[0];
 
   const display_id = dataToString(display.value);
@@ -27,6 +27,7 @@ const mapRawIdentity = (
     email: dataToString(email.value),
     legal: dataToString(legal.value),
     riot: dataToString(riot.value),
+    github: dataToString(github.value),
     twitter: dataToString(twitter.value),
   };
 };
