@@ -3,7 +3,7 @@ import { dot } from "@polkadot-api/descriptors";
 import { createClient } from "polkadot-api";
 import { WebSocketProvider } from "polkadot-api/ws-provider/web";
 
-const ws = WebSocketProvider("wss://dot-rpc.stakeworld.io");
+const ws = WebSocketProvider("wss://polkadot-people-rpc.polkadot.io");
 
 // Connect to the polkadot relay chain.
 const client = createClient(ws);
@@ -16,10 +16,10 @@ client.finalizedBlock$.subscribe((finalizedBlock) =>
 
 // To interact with the chain, you need to get the `TypedApi`, which includes
 // all the types for every call in that chain:
-const dotApi = client.getTypedApi(dot);
+const peopleApi = client.getTypedApi(dot);
 
 // get the value for an account
-const accountInfo = await dotApi.query.System.Account.getValue(
+const accountInfo = await peopleApi.query.Identity.IdentityOf.getValue(
   "16JGzEsi8gcySKjpmxHVrkLTHdFHodRepEz8n244gNZpr9J"
 );
 
