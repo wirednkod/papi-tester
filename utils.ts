@@ -1,39 +1,38 @@
-import type { DotQueries } from "@polkadot-api/descriptors";
-import type { Binary, TypedApi } from "polkadot-api";
+import type { PeopleQueries } from "@polkadot-api/descriptors";
+import type { Binary } from "polkadot-api";
 
 const dataToString = (value: number | string | Binary | undefined) =>
   typeof value === "object" ? value.asText() : value ?? "";
 
-const mapRawIdentity = (
-  rawIdentity?: DotQueries["Identity"]["IdentityOf"]["Value"]
+export const mapRawIdentity = (
+  rawIdentity?: PeopleQueries["Identity"]["IdentityOf"]["Value"]
 ) => {
   if (!rawIdentity) return rawIdentity;
   const {
-    info: { additional, display, email, legal, riot, twitter, web, github },
+    info: { display, email, legal, matrix, twitter, web, github },
   } = rawIdentity[0];
 
   const display_id = dataToString(display.value);
-  const additionalInfo = Object.fromEntries(
-    additional.map(([key, { value }]) => [
-      dataToString(key.value!),
-      dataToString(value),
-    ])
-  );
+  // const additionalInfo = Object.fromEntries(
+  //   additional.map(([key, { value }]) => [
+  //     dataToString(key.value!),
+  //     dataToString(value),
+  //   ])
+  // );
 
   return {
-    ...additionalInfo,
     display: display_id,
     web: dataToString(web.value),
     email: dataToString(email.value),
     legal: dataToString(legal.value),
-    riot: dataToString(riot.value),
+    matrix: dataToString(matrix.value),
     github: dataToString(github.value),
     twitter: dataToString(twitter.value),
   };
 };
 
-export const getFellowshipAddresses = async (
-  api: {
+export const getAllData = async (
+  people_api: {
     query: {
       Identity: { IdentityOf: { getValues: (arg0: any[]) => Promise<any[]> } };
     };
@@ -46,7 +45,7 @@ export const getFellowshipAddresses = async (
 ) => {
   return await coll_api?.query.FellowshipCollective.Members.getEntries().then(
     (mems: any[]) =>
-      api.query.Identity?.IdentityOf?.getValues(
+      people_api.query.Identity?.IdentityOf?.getValues(
         mems.map((m) => m.keyArgs)
       ).then((identities: any[]) =>
         identities.map((identity, idx) => ({

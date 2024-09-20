@@ -13,6 +13,7 @@ npx papi add -w wss://polkadot-rpc.polkadot.io dot
 // Download Scale for collectives from RPC
 ```
 npx papi add -w wss://polkadot-collectives-rpc.polkadot.io collectives
+npx papi add peopledot -n polkadot-people
 ```
 
 // After install make sure to have latest metadata etc from PAPI
