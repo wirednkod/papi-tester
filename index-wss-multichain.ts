@@ -21,7 +21,7 @@ const api = client?.getTypedApi(dot);
 const coll_api = collectiveClient?.getTypedApi(collectives);
 const people_api = peopleClient?.getTypedApi(people);
 
-const addresses = await getAllData(people_api, coll_api, api);
+const addresses = await getAllData(people_api, coll_api);
 
 console.log("Display, Github, Address, Rank");
 addresses
